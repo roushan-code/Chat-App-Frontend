@@ -35,7 +35,7 @@ const AppLayout = () => WrappedComponent => {
 
 
         const { isLoading, data, isError, error, refetch } = useMyChatsQuery("");
-        useErrors(isError, error);
+        useErrors([{error, isError}]);
 
         useEffect(() => {
             getOrSaveFromStorage({ key: NEW_MESSAGE_ALERT, value: newMessagesAlert })
