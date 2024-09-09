@@ -1,5 +1,4 @@
-import { Add, Delete, Done, Edit, Menu } from '@mui/icons-material';
-import KeyboardBackSpaceIcon from '@mui/icons-material/KeyboardBackSpace';
+import { Add, Delete, Done, Edit, KeyboardBackspace, Menu } from '@mui/icons-material';
 import { Backdrop, Box, Button, CircularProgress, Drawer, Grid, IconButton, Stack, TextField, Tooltip, Typography } from '@mui/material';
 import React, { lazy, memo, Suspense, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +10,7 @@ import { Link } from '../components/styles/StyledComponents';
 import { useAsyncMutation, useErrors } from '../hooks/hook';
 import { useChatDetailsQuery, useDeleteChatMutation, useMyGroupsQuery, useRemoveGroupMembersMutation, useRenameGroupMutation } from '../redux/api/api';
 import { setIsAddMember } from '../redux/reducers/misc';
+
 
 const ConfirmDeleteDialog = lazy(() => import('../components/dialogs/ConfirmDeleteDialog'))
 const AddMemberDialog = lazy(() => import('../components/dialogs/AddMemberDialog'))
@@ -164,7 +164,7 @@ const Groups = () => {
         }}
         onClick={navigateback}
       >
-        <KeyboardBackSpaceIcon />
+        <KeyboardBackspace />
       </IconButton>
     </Tooltip>
   </>);
@@ -268,6 +268,8 @@ const Groups = () => {
           alignItems: "center",
           flexDirection: 'column',
           padding: '1rem 2rem',
+          bgcolor: '#6d76a2',
+          position: 'fixed',
           width: '100vw',
           height: '100vh',
           right: '0',

@@ -29,9 +29,6 @@ const ChatList = ({
                     )
 
                     const isOnline = members?.some((member) => onlineUsers.includes(member));
-                    console.log(onlineUsers)
-                    console.log(members)
-                    console.log(isOnline)
                     return <ChatItem 
                         index={index}
                         newMessageAlert={newMessageAlert}
