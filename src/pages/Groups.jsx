@@ -64,12 +64,12 @@ const Groups = () => {
 
   const errors = [
     {
-      isError: myGroups.isError,
-      error: myGroups.error
+      isError: myGroups?.isError,
+      error: myGroups?.error
     },
     {
-      isError: groupDetails.isError,
-      error: groupDetails.error
+      isError: groupDetails?.isError,
+      error: groupDetails?.error
     },
   ]
 
@@ -241,7 +241,7 @@ const Groups = () => {
 
     </Stack>
 
-  return myGroups.isLoading ? <LayoutLoader /> : (
+  return myGroups?.isLoading ? <LayoutLoader /> : (
     <Grid container height={"100vh"}>
       <Grid
         item

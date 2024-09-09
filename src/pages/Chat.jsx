@@ -61,8 +61,8 @@ const Chat = ({chatId}) => {
 
 
   const errors = [
-    { isError: chatDetails.isError, error: chatDetails.error },
-    { isError: oldMessages.isError, error: oldMessages.error }
+    { isError: chatDetails?.isError, error: chatDetails?.error },
+    { isError: oldMessages?.isError, error: oldMessages?.error }
   ];
 
   const submitHandler = (e) => {
@@ -77,7 +77,7 @@ const Chat = ({chatId}) => {
   
   
   useEffect(() => {
-    socket.emit(CHAT_JOIN, {userId: user._id, members})
+    socket.emit(CHAT_JOIN, {userId: user?._id, members})
     dispatch(removeNewMessagesAlert(chatId))
     
     return () => {
@@ -85,7 +85,7 @@ const Chat = ({chatId}) => {
       setMessage("")
       setFetchedOldMessages([])
       setPage(1);
-      socket.emit(CHAT_LEAVE, {userId: user._id, members})
+      socket.emit(CHAT_LEAVE, {userId: user?._id, members})
     }
   }, [chatId])
 
@@ -130,7 +130,7 @@ const Chat = ({chatId}) => {
       // console.log("3: ", chatIdRef.current);
       if (data?.chatId !== chatIdRef.current) return;
       // console.log("ChatId is change and new data is this", data)
-      return setMessages((prevMessages) => [...prevMessages, data.message]);
+      return setMessages((prevMessages) => [...prevMessages, data?.message]);
     }, [chatIdRef]);
     
     const startTypingListner = useCallback((data) =>{

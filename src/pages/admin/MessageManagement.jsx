@@ -85,7 +85,6 @@ const columns = [{
 
 const MessageManagement = () => {
   const {loading,data,error} = useFetchData(`${server}/api/v1/admin/messages`, "dashboard-messages")
-  console.log(data)
   useErrors([{
     isError: error,
     error: error
