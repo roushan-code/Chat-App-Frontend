@@ -48,9 +48,9 @@ const [acceptRequest] = useAcceptFriendRequestMutation()
         
           {
             isLoading ? <Skeleton/> : (
-              data.allRequests.length > 0 ? (<>
+              data?.allRequests.length > 0 ? (<>
               {
-                data.allRequests.map(({sender, _id}) => (
+                data?.allRequests.map(({sender, _id}) => (
                   <NotificationItem sender={sender} _id={_id} handler={friendRequestHandler} key={_id} />
                 ))
               }
