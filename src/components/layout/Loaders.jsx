@@ -19,9 +19,11 @@ export const LayoutLoader = () => {
 
             <Grid item xs={12} sm={8} md={5} lg={6} height={"100%"} bgcolor={"rgb(14 16 23)"} borderLeft={'1px solid #202500'}
                     borderRight={'1px solid #202500'}>
-            <Stack spacing={'1rem'}>
+            <Stack spacing={'1rem'} bgcolor={'rgb(125 123 123 / 11%)'}>
             {Array.from({length: 7}).map((_, index)=>(
-                <Skeleton bgcolor={'rgb(125 123 123 / 11%)'} variant='rectangular' key={index} height={'5rem'}/>
+                <Skeleton sx={{
+                    bgcolor: 'rgb(1 1 1 / 48%)'
+                }} variant='rectangular' key={index} height={'5rem'}/>
             ))}
             </Stack>
             </Grid>

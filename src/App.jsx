@@ -46,7 +46,7 @@ const App = () => {
 
   },[dispatch]);
   
-  return loader ? <LayoutLoader/> :  (
+  return true ? <LayoutLoader/> :  (
     <BrowserRouter>
       <Suspense fallback={<LayoutLoader/>}>
       <Routes>
