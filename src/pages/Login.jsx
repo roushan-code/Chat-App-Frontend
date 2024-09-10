@@ -1,6 +1,6 @@
 import { useFileHandler, useInputValidation } from '6pp';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
-import { Avatar, Button, Container, IconButton, Paper, Stack, TextField, Typography } from '@mui/material';
+import { Avatar, Button, Container, IconButton, InputAdornment, Paper, Stack, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -9,6 +9,7 @@ import { server } from '../components/constants/config';
 import { VisuallyHiddenInput } from '../components/styles/StyledComponents';
 import { userExists } from '../redux/reducers/auth';
 import { usernameValidator } from '../utils/validator';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 
 const Login = () => {
@@ -22,6 +23,7 @@ const Login = () => {
     const bio = useInputValidation("");
     const username = useInputValidation("", usernameValidator);
     const password = useInputValidation("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const avatar = useFileHandler("single");
 
@@ -147,7 +149,20 @@ const Login = () => {
                                         value={password.value}
                                         onChange={password.changeHandler}
                                         autoComplete='current-password'
-                                    />
+                                        type={showPassword ? 'text' : 'password'}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position='end'>
+                                                    <IconButton 
+                                                    aria-label="toggle password visibility"
+                                                    onClick={()=>setShowPassword((prev)=> !prev)}
+                                                    >
+                                                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            )
+                                                }}
+                                            />
                                     <Button
                                         type='submit'
                                         disabled={isLoading}
@@ -279,7 +294,20 @@ const Login = () => {
                                         value={password.value}
                                         onChange={password.changeHandler}
                                         autoComplete='current-password'
-                                    />
+                                        type={showPassword ? 'text' : 'password'}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position='end'>
+                                                    <IconButton 
+                                                    aria-label="toggle password visibility"
+                                                    onClick={()=>setShowPassword((prev)=> !prev)}
+                                                    >
+                                                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            )
+                                                }}
+                                            />
 
                                     <Button
                                         type='submit'

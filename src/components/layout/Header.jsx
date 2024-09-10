@@ -52,6 +52,8 @@ const Header = () => {
             justifyContent={'center'}
             alignItems={'center'}
             overflow={'hidden'}
+            position={'sticky'}
+            width={'100%'}
             >
                 <AppBar position='static'  >
                     <Toolbar sx={{

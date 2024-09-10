@@ -102,7 +102,7 @@ const AppLayout = () => WrappedComponent => {
                         </Drawer>
                     )
                 }
-                <Grid container height={"calc(100vh - 3rem)"} >
+                <Grid container  height={"calc(100vh - 3rem)"}  >
                     <Grid item sm={4} md={3} sx={{
                         display: { xs: "none", sm: "block" },
                         bgcolor: "rgb(9 10 13)"

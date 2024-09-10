@@ -42,7 +42,7 @@ const [acceptRequest] = useAcceptFriendRequestMutation()
         direction="column"
         p={"2rem"}
         width={"25rem"}
-        bgcolor={'#0e0f0ec9'}
+        bgcolor={'#cf7bfbc9'}
       >
         <DialogTitle textAlign={"center"} > Notifications </DialogTitle>
         
@@ -51,12 +51,12 @@ const [acceptRequest] = useAcceptFriendRequestMutation()
               data?.allRequests.length > 0 ? (<>
               {
                 data?.allRequests.map(({sender, _id}) => (
-                  <NotificationItem sender={sender} _id={_id} handler={friendRequestHandler} key={_id} />
+                  <NotificationItem sender={sender} _id={_id} handler={friendRequestHandler}  key={_id} />
                 ))
               }
             </>) : (
-              <ListItem>
-                <ListItemText>No Notifications</ListItemText>
+              <ListItem sx={{ textAlign: 'center'}}>
+                <ListItemText >No Notifications</ListItemText>
               </ListItem>
             ))
           }
@@ -97,7 +97,8 @@ export const NotificationItem = memo(({ sender, _id, handler }) => {
             display: "-webkit-box",
             WebkitLineClamp: 1,
             WebkitBoxOrient: "vertical",
-            width: "100%"
+            width: "100%",
+            color: 'black'
           }}
 
         >{`${name} sent you a friend request`}</Typography>
