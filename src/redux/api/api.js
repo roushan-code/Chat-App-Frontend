@@ -1,5 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 import { server } from "../../components/constants/config"
+import { getAdminToken, getTokenFromStorage } from "../../lib/features";
 
 
 const api = createApi({
@@ -11,6 +12,9 @@ const api = createApi({
         myChats: builder.query({
             query: () => ({
                 url: 'chat/my',
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
             }),
             providesTags: ["Chat"]
@@ -19,6 +23,9 @@ const api = createApi({
         searchUser: builder.query({
             query: (name) => ({
                 url: `user/search/?name=${name}`,
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
                 }),
                 providesTags: ["User"]
@@ -28,6 +35,9 @@ const api = createApi({
             query: (data) => ({
                 url: `user/send-request`,
                 method: "PUT",
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
                 body: data,
             }),
@@ -37,6 +47,9 @@ const api = createApi({
         getNotifications: builder.query({
             query: () => ({
                 url: `user/notifications`,
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
             }),
             keepUnusedDataFor: 0,
@@ -51,6 +64,9 @@ const api = createApi({
                 }
                 return {
                     url,
+                    headers: {
+                        "authorization": `Bearer ${getTokenFromStorage()}`
+                    },
                     credentials: "include",
                 }
             },
@@ -60,6 +76,9 @@ const api = createApi({
         getMessages: builder.query({
             query: ({chatId, page}) => ({
                 url: `chat/messages/${chatId}?page=${page}`,
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
             }),
             keepUnusedDataFor: 0
@@ -69,6 +88,9 @@ const api = createApi({
             query: (data) => ({
                 url: `user/accept-request`,
                 method: "PUT",
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
                 body: data,
             }),
@@ -79,6 +101,9 @@ const api = createApi({
             query: (data) => ({
                 url: `chat/message`,
                 method: "POST",
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
                 body: data,
             }),
@@ -87,6 +112,9 @@ const api = createApi({
         myGroups: builder.query({
             query: () => ({
                 url: 'chat/my/groups',
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
             }),
             providesTags: ["Chat"]
@@ -101,6 +129,9 @@ const api = createApi({
                 }
                 return {
                     url,
+                    headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                     credentials: "include",
                 }
                 
@@ -112,6 +143,9 @@ const api = createApi({
             query: ({name, members}) => ({
                 url: `chat/new`,
                 method: "POST",
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
                 body: {name, members},
             }),
@@ -122,6 +156,9 @@ const api = createApi({
             query: ({chatId, name}) => ({
                 url: `chat/${chatId}`,
                 method: "PUT",
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
                 body: {name},
             }),
@@ -131,6 +168,9 @@ const api = createApi({
             query: ({chatId, userId}) => ({
                 url: `chat/removemember`,
                 method: "PUT",
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
                 body: {chatId, userId},
             }),
@@ -140,6 +180,9 @@ const api = createApi({
             query: ({members, chatId}) => ({
                 url: `chat/addmembers`,
                 method: "PUT",
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
                 body: {members, chatId},
             }),
@@ -149,6 +192,9 @@ const api = createApi({
             query: (chatId) => ({
                 url: `chat/${chatId}`,
                 method: "DELETE",
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
             }),
             invalidatesTags: ["Chat"]
@@ -157,9 +203,53 @@ const api = createApi({
             query: (chatId) => ({
                 url: `chat/leave/${chatId}`,
                 method: "DELETE",
+                headers: {
+                    "authorization": `Bearer ${getTokenFromStorage()}`
+                },
                 credentials: "include",
             }),
             invalidatesTags: ["Chat"]
+        }),
+
+        allAdminChats: builder.query({
+            query: () => ({
+                url: 'admin/chats',
+                headers: {
+                    "authorization": `Bearer ${getAdminToken()}`
+                },
+                credentials: "include",
+            }),
+            providesTags: ["AllChat"]
+        }),
+        allAdminMessages: builder.query({
+            query: () => ({
+                url: 'admin/messages',
+                headers: {
+                    "authorization": `Bearer ${getAdminToken()}`
+                },
+                credentials: "include",
+            }),
+            providesTags: ["AllMessages"]
+        }),
+        allAdminUsers: builder.query({
+            query: () => ({
+                url: 'admin/users',
+                headers: {
+                    "authorization": `Bearer ${getAdminToken()}`
+                },
+                credentials: "include",
+            }),
+            providesTags: ["AllUsers"]
+        }),
+        allAdminDashboardStats: builder.query({
+            query: () => ({
+                url: 'admin/stats',
+                headers: {
+                    "authorization": `Bearer ${getAdminToken()}`
+                },
+                credentials: "include",
+            }),
+            providesTags: ["Dashboard"]
         }),
     }),
 
@@ -183,4 +273,8 @@ export const { useMyChatsQuery,
     useAddGroupMembersMutation,
     useDeleteChatMutation,
     useLeaveGroupMutation,
+    useAllAdminChatsQuery,
+    useAllAdminMessagesQuery,
+    useAllAdminUsersQuery,
+    useAllAdminDashboardStatsQuery,
 } = api;

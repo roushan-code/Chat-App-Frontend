@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
   const initialState={
     isAdmin: false,
     loader: true,
-    user: null
+    user: null,
   };
 
 const authSlice = createSlice({
@@ -25,6 +25,7 @@ const authSlice = createSlice({
             state.user = null;
             state.loader = false;
         },
+        
     },
 
     extraReducers: (builder)=>{

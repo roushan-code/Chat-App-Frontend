@@ -7,9 +7,10 @@ import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { server } from '../components/constants/config';
 import { VisuallyHiddenInput } from '../components/styles/StyledComponents';
-import { userExists } from '../redux/reducers/auth';
+import {  userExists } from '../redux/reducers/auth';
 import { usernameValidator } from '../utils/validator';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { setTokenToLocalstorage } from '../lib/features';
 
 
 const Login = () => {
@@ -49,6 +50,7 @@ const Login = () => {
             });
             toast.success(data?.message, {id: toastId});
             dispatch(userExists(data?.user))
+            setTokenToLocalstorage(data?.token)
         } catch (error) {
             toast.error(error?.response?.data?.message || "something went wrong", {id: toastId})
         } finally {
@@ -79,6 +81,7 @@ const Login = () => {
 
             dispatch(userExists(data?.user))
             toast.success(data?.message, {id: toastId});
+            setTokenToLocalstorage(data?.token)
         } catch (error) {
             toast.error(error?.response?.data?.message || "something went wrong", {id: toastId})
         } finally {

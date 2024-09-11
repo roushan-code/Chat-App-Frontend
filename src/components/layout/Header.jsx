@@ -11,6 +11,7 @@ import { userDoesNotExist } from '../../redux/reducers/auth';
 import { resetNotificationCount } from '../../redux/reducers/chat';
 import { setIsMobile, setIsNewGroup, setIsNotification, setIsSearch } from '../../redux/reducers/misc';
 import { server } from '../constants/config';
+import { expireLoginToken, getTokenFromStorage } from '../../lib/features';
 
 const Search = lazy(() => import('../specific/Search'));
 const NewGroup = lazy(() => import('../specific/NewGroup'));
@@ -34,9 +35,16 @@ const Header = () => {
 
     const logoutHandler = async() => {
         try {
-            const {data} = await axios.get(`${server}/api/v1/user/logout`, {withCredentials: true});
+
+            const {data} = await axios.get(`${server}/api/v1/user/logout`, {
+                headers: {
+                    "authorization":  `Bearer ${getTokenFromStorage()}`,
+                  },
+                withCredentials: true
+            });
             toast.success('Logged out successfully');
             dispatch(userDoesNotExist());
+            expireLoginToken();
         } catch (error) {
             toast.error(error?.response?.data?.message) || "Something Went Wrong";
         }

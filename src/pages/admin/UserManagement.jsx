@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import AdminLayout from '../../components/layout/AdminLayout'
 import UserTable from '../../components/shared/UserTable'
-import { Avatar, Table } from '@mui/material';
+import { Avatar, Skeleton, Table } from '@mui/material';
 import { dashboardData } from '../../components/constants/sampleData';
 import {transformImage} from '../../lib/features'
 import { useFetchData } from '6pp';
 import { server } from '../../components/constants/config';
 import { useErrors } from '../../hooks/hook';
+import { useAllAdminUsersQuery } from '../../redux/api/api';
 
 
 const columns = [{
@@ -52,10 +53,13 @@ const columns = [{
 ];
 
 const UserManagement = () => {
-  const {loading,data,error} = useFetchData(`${server}/api/v1/admin/users`, "dashboard-users")
+  // const {loading,data,error} = useFetchData(`${server}/api/v1/admin/users`, "dashboard-users")
+
+  const allUsers = useAllAdminUsersQuery();
+  const { data, error, isLoading, isError } = allUsers;
   
   useErrors([{
-    isError: error,
+    isError: isError,
     error: error
 }])
 
@@ -74,7 +78,7 @@ const UserManagement = () => {
 
   return  (
     <AdminLayout>
-      {loading ? <Skeleton/> : <UserTable heading={"All Users"} columns={columns} rows={rows} />}
+      {isLoading ? <Skeleton/> : <UserTable heading={"All Users"} columns={columns} rows={rows} />}
     </AdminLayout>
   );
 };

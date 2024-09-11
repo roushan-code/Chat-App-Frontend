@@ -22,13 +22,13 @@ const ChatManagement = lazy(() => import('./pages/admin/ChatManagement'));
 
 import {Toaster} from 'react-hot-toast';
 import { SocketProvider } from './socket';
+import { getTokenFromStorage } from './lib/features';
 
 
 
 const App = () => {
 
   const {user, loader} = useSelector(state => state.auth);
-  // console.log(user)
 
   const dispatch = useDispatch();
 
@@ -36,7 +36,12 @@ const App = () => {
   useEffect(() => {
 
     axios
-      .get(`${server}/api/v1/user/me`, {withCredentials: true})
+      .get(`${server}/api/v1/user/me`, {
+        headers: {
+          "authorization":  `Bearer ${getTokenFromStorage()}`,
+        },
+        withCredentials: true,
+      })
       .then(({data}) => {
         return dispatch(userExists(data?.data))
       })

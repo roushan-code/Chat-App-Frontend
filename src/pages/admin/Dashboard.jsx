@@ -9,14 +9,17 @@ import { useFetchData } from '6pp';
 import { server } from '../../components/constants/config';
 import { LayoutLoader } from '../../components/layout/Loaders';
 import { useErrors } from '../../hooks/hook';
+import { useAllAdminDashboardStatsQuery } from '../../redux/api/api';
 
 const Dashboard = () => {
-    const {loading,data,error} = useFetchData(`${server}/api/v1/admin/stats`, "dashboard-stats")
-
+    // const {loading,data,error} = useFetchData(`${server}/api/v1/admin/stats`, "dashboard-stats")
     // console.log(data)
     // const {groupsCount, totalChats, totalMessages, totalUsers, messagesChart} = data;
+
+    const Dashboard = useAllAdminDashboardStatsQuery();
+  const { data, error, isLoading, isError } = Dashboard;
     useErrors([{
-        isError: error,
+        isError: isError,
         error: error
     }])
 
@@ -93,7 +96,7 @@ const Dashboard = () => {
     </Stack>
 
     
-  return loading ? <LayoutLoader/> : (
+  return isLoading ? <LayoutLoader/> : (
     <AdminLayout >
         <Container component={'main'}  >
             {Appbar}

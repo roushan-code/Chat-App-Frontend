@@ -9,6 +9,7 @@ import RenderAttachment from '../../components/shared/RenderAttachment'
 import { useFetchData } from '6pp';
 import { server } from '../../components/constants/config';
 import { useErrors } from '../../hooks/hook';
+import { useAllAdminMessagesQuery } from '../../redux/api/api';
 
 
 const columns = [{
@@ -84,9 +85,11 @@ const columns = [{
 ];
 
 const MessageManagement = () => {
-  const {loading,data,error} = useFetchData(`${server}/api/v1/admin/messages`, "dashboard-messages")
+  // const {loading,data,error} = useFetchData(`${server}/api/v1/admin/messages`, "dashboard-messages")
+  const allMessages = useAllAdminMessagesQuery();
+  const { data, error, isLoading, isError } = allMessages;
   useErrors([{
-    isError: error,
+    isError: isError,
     error: error
 }])
   
@@ -110,7 +113,7 @@ const MessageManagement = () => {
   }, [data]);
   return (
     <AdminLayout>
-        {loading ? <Skeleton /> : <UserTable heading={"All Messages"} columns={columns} rows={rows} rowHeight={200} />}
+        {isLoading ? <Skeleton /> : <UserTable heading={"All Messages"} columns={columns} rows={rows} rowHeight={200} />}
 </AdminLayout>
   )
 }

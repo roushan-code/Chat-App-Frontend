@@ -8,6 +8,7 @@ import { transformImage } from '../../lib/features';
 import { useFetchData } from '6pp';
 import { server } from '../../components/constants/config';
 import { useErrors } from '../../hooks/hook';
+import { useAllAdminChatsQuery } from '../../redux/api/api';
 
 
 const columns = [{
@@ -66,10 +67,12 @@ const columns = [{
 ];
 
 const ChatManagement = () => {
-  const { loading, data, error } = useFetchData(`${server}/api/v1/admin/chats`, "dashboard-chats")
+  // const { loading, data, error } = useFetchData(`${server}/api/v1/admin/chats`, "dashboard-chats")
+  const allChats = useAllAdminChatsQuery();
+  const { data, error, isLoading, isError } = allChats;
   
   useErrors([{
-    isError: error,
+    isError: isError,
     error: error
   }])
   const [rows, setRows] = useState([]);
@@ -94,7 +97,7 @@ const ChatManagement = () => {
 
   return (
     <AdminLayout>
-      {loading ? <Skeleton /> : <UserTable heading={"All Chats"} columns={columns} rows={rows} />}
+      {isLoading ? <Skeleton /> : <UserTable heading={"All Chats"} columns={columns} rows={rows} />}
     </AdminLayout>
   );
 };
