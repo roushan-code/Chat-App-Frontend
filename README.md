@@ -2,7 +2,13 @@
 # Chat-App
 Full-Stack Chat App with Admin Dashboard.
 
+- **Loading Time**: Loading Time may be around 50s due to render platfrom disclaimer.
+
+![Render Disclaimer](https://res.cloudinary.com/ddxwcwxhl/image/upload/v1728108870/samples/landscapes/ta8hyhwztzdmnrsg32mg.png)&nbsp;
+
 [Visit Now](https://chat-app-frontend-usr3.vercel.app/) 🚀
+
+![Demo](https://res.cloudinary.com/ddxwcwxhl/image/upload/v1728111233/samples/landscapes/sruojprtj4cvbmptmyl8.gif)&nbsp;
 
 ## 🖥️ Tech Stack
 **Frontend:**
@@ -58,8 +64,6 @@ Full-Stack Chat App with Admin Dashboard.
 ## Sneak Peek of Admin Dashboard 🙈 :
 ![Capture](https://res.cloudinary.com/ddxwcwxhl/image/upload/v1728073807/samples/landscapes/zw3alamys9w2fstqjkw8.png)
 
-![Capture](https://res.cloudinary.com/ddxwcwxhl/image/upload/v1728073806/samples/landscapes/yizsbllyt0knfmp7iqwv.png)
-
 <table>
   <tr>
     <td><img src="https://res.cloudinary.com/ddxwcwxhl/image/upload/v1728073806/samples/landscapes/yjlrtl4naxcyzktkyahr.png" alt="mockup" /></td>
@@ -67,6 +71,8 @@ Full-Stack Chat App with Admin Dashboard.
   </tr>
   
 </table>
+
+![Capture](https://res.cloudinary.com/ddxwcwxhl/image/upload/v1728073806/samples/landscapes/yizsbllyt0knfmp7iqwv.png)
 
 <h2>📬 Contact</h2>
 
