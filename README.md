@@ -74,6 +74,8 @@ Full-Stack Chat App with Admin Dashboard.
   
 </table>
 
+**Admin Dashboard**
+
 ![Capture](https://res.cloudinary.com/ddxwcwxhl/image/upload/v1728073806/samples/landscapes/yizsbllyt0knfmp7iqwv.png)
 
 <h2>📬 Contact</h2>
