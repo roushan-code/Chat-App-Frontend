@@ -8,7 +8,7 @@ Full-Stack Chat App with Admin Dashboard.
 
 [Visit Now](https://chat-app-frontend-usr3.vercel.app/) 🚀
 
-**Demo**
+## Demo
 
 ![Demo](https://res.cloudinary.com/ddxwcwxhl/image/upload/v1728111233/samples/landscapes/sruojprtj4cvbmptmyl8.gif)&nbsp;
 
